@@ -183,7 +183,7 @@ async void GenerateTransport(Random rand, int idRange, IBusControl bus)
             Table = UpdateTransportTOEvent.Tables.TRAVEL,
             TravelDetails = new TravelChangeDto()
             {
-                Id = rand.Next(idRange),
+                Id = rand.Next(idRange)+1,
             },
         };
         await bus.Publish(@event);
@@ -198,8 +198,8 @@ async void GenerateTransport(Random rand, int idRange, IBusControl bus)
             Table = UpdateTransportTOEvent.Tables.TRAVEL,
             TravelDetails = new TravelChangeDto()
             {
-                Source = direction ? rand.Next(10) : rand.Next(19),
-                Destination = direction ? rand.Next(19) : rand.Next(10),
+                Source = direction ? rand.Next(10)+1 : rand.Next(19)+1,
+                Destination = direction ? rand.Next(19)+1 : rand.Next(10)+1,
                 Direction = direction,
                 DepartureTime = DateTime.Now.AddMonths(rand.Next(2) + 1).AddDays(rand.Next(20)),
                 AvailableSeats = rand.Next(100),
@@ -218,7 +218,7 @@ async void GenerateTransport(Random rand, int idRange, IBusControl bus)
             Table = UpdateTransportTOEvent.Tables.TRAVEL,
             TravelDetails = new TravelChangeDto()
             {
-                Id = rand.Next(idRange),
+                Id = rand.Next(idRange)+1,
                 Price = update > 0 ? Math.Round(rand.NextDouble() * 2000 + 300, 2) : -1,
                 AvailableSeats = update < 2 ? rand.Next(100) : -1,
             },
